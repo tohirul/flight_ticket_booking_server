@@ -1,8 +1,11 @@
-import { Prisma } from '@prisma/client';
 import { IGenericErrorResponse } from '@/core/types/common.types';
 import { IGenericErrorMessage } from '@/core/types/error.types';
 
-const PrismaError = (error: Prisma.PrismaClientKnownRequestError): IGenericErrorResponse => {
+import type { PrismaClientKnownRequestError } from '@generated/@prisma/client/runtime/library';
+
+// import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+
+const PrismaError = (error:PrismaClientKnownRequestError): IGenericErrorResponse => {
   let statusCode = 400;
   let message = 'Database error';
   const errors: IGenericErrorMessage[] = [];

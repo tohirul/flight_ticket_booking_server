@@ -1,4 +1,5 @@
-import { PrismaPromise } from '@prisma/client';
+import type { PrismaPromise } from "@generated/@prisma/client/runtime/library";
+
 
 export interface IRepository<T> {
   findAll(query?: object): Promise<T[]>;
