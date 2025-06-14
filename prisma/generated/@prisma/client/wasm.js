@@ -120,10 +120,20 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.CurrencyScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  symbol: 'symbol'
+};
+
 exports.Prisma.CountryScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  countryCode: 'countryCode'
+  countryCode: 'countryCode',
+  continent: 'continent',
+  currencyCode: 'currencyCode',
+  phoneCode: 'phoneCode'
 };
 
 exports.Prisma.StateScalarFieldEnum = {
@@ -233,10 +243,24 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.CurrencyOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  symbol: 'symbol'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 exports.Prisma.CountryOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
-  countryCode: 'countryCode'
+  countryCode: 'countryCode',
+  currencyCode: 'currencyCode',
+  phoneCode: 'phoneCode'
 };
 
 exports.Prisma.StateOrderByRelevanceFieldEnum = {
@@ -244,11 +268,6 @@ exports.Prisma.StateOrderByRelevanceFieldEnum = {
   name: 'name',
   stateCode: 'stateCode',
   countryId: 'countryId'
-};
-
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
 };
 
 exports.Prisma.CityOrderByRelevanceFieldEnum = {
@@ -316,6 +335,16 @@ exports.Prisma.BookingOrderByRelevanceFieldEnum = {
   flightId: 'flightId',
   seatNumber: 'seatNumber'
 };
+exports.Continent = exports.$Enums.Continent = {
+  Africa: 'Africa',
+  Antarctica: 'Antarctica',
+  Asia: 'Asia',
+  Europe: 'Europe',
+  North_America: 'North_America',
+  Oceania: 'Oceania',
+  South_America: 'South_America'
+};
+
 exports.FlightStatus = exports.$Enums.FlightStatus = {
   Cancelled: 'Cancelled',
   Confirmed: 'Confirmed',
@@ -351,6 +380,7 @@ exports.BookingStatus = exports.$Enums.BookingStatus = {
 };
 
 exports.Prisma.ModelName = {
+  Currency: 'Currency',
   Country: 'Country',
   State: 'State',
   City: 'City',

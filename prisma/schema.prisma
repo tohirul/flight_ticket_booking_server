@@ -42,14 +42,37 @@ enum Gender {
   PreferNotToSay
 }
 
+enum Continent {
+  Africa
+  Antarctica
+  Asia
+  Europe
+  North_America
+  Oceania
+  South_America
+}
+
+model Currency {
+  id        String    @id @default(uuid())
+  code      String
+  name      String
+  symbol    String
+  countries Country[]
+}
+
 model Country {
   id          String    @id @default(uuid())
-  name        String    @unique
-  countryCode String    @unique
+  name        String
+  countryCode String
   airlines    Airline[]
   airports    Airport[]
   cities      City[]
-  State       State[]
+  states      State[]
+
+  continent    Continent
+  currencyCode String?
+  currency     Currency? @relation(fields: [currencyCode], references: [id])
+  phoneCode    String?
 
   @@unique([name, countryCode])
   @@map("Country")
