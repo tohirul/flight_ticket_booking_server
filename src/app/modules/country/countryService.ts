@@ -1,29 +1,15 @@
-import { Country } from '@generated/@prisma/client';
-import CountryRepository from '@/core/repositories/container/repository_country';
 import { inject, injectable } from 'tsyringe';
 
+import CountryRepository from '@/core/repositories/container/repository_country';
+import Services from '@/core/shared/services';
+import { Country } from '@generated/@prisma/client';
+
 @injectable()
-export default class CountryService {
+export default class CountryService extends Services<Country> {
   constructor(
     @inject('CountryRepository')
-    private countryRepository: CountryRepository
-  ) {}
-
-  async getAll() {
-    return this.countryRepository.findAll({});
-  }
-  async getSingle(id: string) {
-    return this.countryRepository.findOne({ where: { id } });
-  }
-  async create(data: Country) {
-    return this.countryRepository.create({
-      data,
-    });
-  }
-  async update(id: string, data: Partial<Country>) {
-    return this.countryRepository.update({ where: { id }, data });
-  }
-  async destroy(id: string) {
-    return this.countryRepository.destroy({ where: { id } });
+    countryRepository: CountryRepository
+  ) {
+    super(countryRepository);
   }
 }
