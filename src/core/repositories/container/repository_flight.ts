@@ -8,9 +8,9 @@ import type { Flight, PrismaClient } from '@generated/@prisma/client';
 const Prisma = PrismaService.client;
 
 @injectable()
-class FlightRepository extends Repository<Flight, PrismaClient['flight']> {
+class FlightRepository extends Repository<Flight, PrismaClient['flight'], PrismaClient> {
   constructor() {
-    super(Prisma.flight);
+    super(Prisma.flight, Prisma);
   }
 }
 

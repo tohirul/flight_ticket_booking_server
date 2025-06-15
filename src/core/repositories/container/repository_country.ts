@@ -4,12 +4,12 @@ import PrismaService from '@/database';
 import Repository from '@core/repositories/repository';
 import { Country, PrismaClient } from '@generated/@prisma/client';
 
-const prisma = PrismaService.client;
+const Prisma = PrismaService.client;
 
 @injectable()
 class CountryRepository extends Repository<Country, PrismaClient['country'], PrismaClient> {
   constructor() {
-    super(prisma.country, prisma);
+    super(Prisma.country, Prisma);
   }
 }
 
