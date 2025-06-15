@@ -1,10 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 
+import CityService from '@/app/modules/city/cityServices';
 import Controller from '@/core/shared/controller';
-
-import CityService from './cityServices';
-
-import type { City } from '@generated/@prisma/client';
+import { City } from '@generated/@prisma/client';
 
 @injectable()
 class CityController extends Controller<City> {
