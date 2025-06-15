@@ -1,16 +1,18 @@
 import express from 'express';
+import { container } from 'tsyringe';
 
 import requestValidator from '@/app/middlewares/requestValidator';
 
-import * as stateController from './stateController';
+import StateController from './stateController';
 import { createStateSchema, updateStateSchema } from './stateZod';
 
+const { getAll, getSingle, create, update, destroy } = container.resolve(StateController);
 const stateRouter = express.Router();
 
-stateRouter.get('/', stateController.getAllStates);
-stateRouter.get('/:id', stateController.getStateById);
-stateRouter.post('/', requestValidator(createStateSchema), stateController.createState);
-stateRouter.put('/:id', requestValidator(updateStateSchema), stateController.updateState);
-stateRouter.delete('/:id', stateController.deleteState);
+stateRouter.get('/', getAll);
+stateRouter.get('/:id', getSingle);
+stateRouter.post('/', requestValidator(createStateSchema), create);
+stateRouter.put('/:id', requestValidator(updateStateSchema), update);
+stateRouter.delete('/:id', destroy);
 
 export default stateRouter;

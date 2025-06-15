@@ -1,34 +1,15 @@
 import { inject, injectable } from 'tsyringe';
 
 import StateRepository from '@/core/repositories/container/repository_state';
+import Services from '@/core/shared/services';
 import { State } from '@generated/@prisma/client';
 
 @injectable()
-export default class StateService {
+export default class StateService extends Services<State> {
   constructor(
     @inject('StateRepository')
-    private stateRepository: StateRepository
-  ) {}
-  async getAll() {
-    return this.stateRepository.findAll({});
-  }
-  async getSingle(id: string) {
-    return this.stateRepository.findOne({ where: { id } });
-  }
-
-  async create(data: State) {
-    return this.stateRepository.create({
-      data,
-    });
-  }
-  async update(id: string, data: State) {
-    return this.stateRepository.update({
-      where: { id },
-      data,
-    });
-  }
-
-  async destroy(id: string) {
-    return this.stateRepository.destroy({ where: { id } });
+    stateRepository: StateRepository
+  ) {
+    super(stateRepository);
   }
 }
