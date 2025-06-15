@@ -1,20 +1,18 @@
-import {
-  getAllAirplanes,
-  getPlaneDetails,
-  createNewAirplaneInfo,
-  updateAirplaneInfo,
-  deleteAirplaneInfo,
-} from './airplaneController';
+import express from 'express';
+import { container } from 'tsyringe';
+
+import AirplaneController from '@/app/modules/airplane/airplaneController';
 import requestValidator from '@middlewares/requestValidator';
+
 import { createAirplaneSchema } from './airplaneZod';
-import { Router } from 'express';
 
-const airPlaneRouter = Router();
+const { getAll, getSingle, create, update, destroy } = container.resolve(AirplaneController);
+const airPlaneRouter = express.Router();
 
-airPlaneRouter.get('/', getAllAirplanes);
-airPlaneRouter.get('/:airplaneId', getPlaneDetails);
-airPlaneRouter.post('/', requestValidator(createAirplaneSchema), createNewAirplaneInfo);
-airPlaneRouter.put('/:airplaneId', updateAirplaneInfo);
-airPlaneRouter.delete('/:airplaneId', deleteAirplaneInfo);
+airPlaneRouter.get('/', getAll);
+airPlaneRouter.get('/:airplaneId', getSingle);
+airPlaneRouter.post('/', requestValidator(createAirplaneSchema), create);
+airPlaneRouter.put('/:airplaneId', update);
+airPlaneRouter.delete('/:airplaneId', destroy);
 
 export default airPlaneRouter;
