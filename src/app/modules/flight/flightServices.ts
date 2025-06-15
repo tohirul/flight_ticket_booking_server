@@ -1,27 +1,15 @@
-import type FlightRepository from "@/core/repositories/container/repository_flight";
-import type { Flight } from "@generated/@prisma/client";
+import type FlightRepository from '@/core/repositories/container/repository_flight';
 import { inject, injectable } from 'tsyringe';
 
-@injectable()   
-export default class FlightService {
-    constructor(
-        @inject("FlightRepository") 
-        private flightRepository: FlightRepository,
+import Services from '@/core/shared/services';
 
-    ){}
-    async getAll(){
-        return this.flightRepository.findAll({});
-    }                               
-    async getSingle(id: string){
-        return this.flightRepository.findOne({where: {id}});
-    }
-    async create(data: Flight){
-        return this.flightRepository.create({data});
-    }
-    async update(id: string, data: Partial<Flight>){
-        return this.flightRepository.update({where: {id}, data});
-    }
-    async destroy(id: string){
-        return this.flightRepository.destroy({where: {id}});
-    }
+import type { Flight } from '@generated/@prisma/client';
+@injectable()
+export default class FlightService extends Services<Flight> {
+  constructor(
+    @inject('FlightRepository')
+    flightRepository: FlightRepository
+  ) {
+    super(flightRepository);
+  }
 }

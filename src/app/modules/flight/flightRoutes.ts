@@ -1,17 +1,18 @@
 import express from 'express';
+import { container } from 'tsyringe';
 
 import requestValidator from '@/app/middlewares/requestValidator';
+import FlightController from '@/app/modules/flight/flightController';
 
-import * as FlightController from './flightController';
 import { CreateFlightSchema, UpdateFlightSchema } from './flightZod';
 
-const flightRoutes =  express.Router();
+const { getAll, getSingle, create, update, destroy } = container.resolve(FlightController);
+const flightRoutes = express.Router();
 
-flightRoutes.get('/', FlightController.getAllFlights);
-flightRoutes.get('/:id', FlightController.getFlightById);
-flightRoutes.post('/', requestValidator(CreateFlightSchema), FlightController.createFlight);
-flightRoutes.put('/:id', requestValidator(UpdateFlightSchema), FlightController.updateFlight);
-flightRoutes.delete('/:id', FlightController.deleteFlight);
-
+flightRoutes.get('/', getAll);
+flightRoutes.get('/:id', getSingle);
+flightRoutes.post('/', requestValidator(CreateFlightSchema), create);
+flightRoutes.put('/:id', requestValidator(UpdateFlightSchema), update);
+flightRoutes.delete('/:id', destroy);
 
 export default flightRoutes;
