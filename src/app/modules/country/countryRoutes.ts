@@ -5,12 +5,14 @@ import CountryController from '@/app/modules/country/countryController';
 import { createCountrySchema, updateCountrySchema } from '@/app/modules/country/countryZod';
 import requestValidator from '@middlewares/requestValidator';
 
-const countryController = container.resolve(CountryController);
+const { getAll, getSingle, create, update, destroy } = container.resolve(CountryController);
+
 const countryRouter = express.Router();
-countryRouter.get('/', countryController.getAll);
-countryRouter.get('/:countryId', countryController.getSingle);
-countryRouter.post('/', requestValidator(createCountrySchema), countryController.create);
-countryRouter.put('/:countryId', requestValidator(updateCountrySchema), countryController.update);
-countryRouter.delete('/:countryId', countryController.destroy);
+
+countryRouter.get('/', getAll);
+countryRouter.get('/:countryId', getSingle);
+countryRouter.post('/', requestValidator(createCountrySchema), create);
+countryRouter.put('/:countryId', requestValidator(updateCountrySchema), update);
+countryRouter.delete('/:countryId', destroy);
 
 export default countryRouter;
