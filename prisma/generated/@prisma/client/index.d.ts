@@ -14,11 +14,6 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model Currency
- * 
- */
-export type Currency = $Result.DefaultSelection<Prisma.$CurrencyPayload>
-/**
  * Model Country
  * 
  */
@@ -155,8 +150,8 @@ export const Continent: typeof $Enums.Continent
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Currencies
- * const currencies = await prisma.currency.findMany()
+ * // Fetch zero or more Countries
+ * const countries = await prisma.country.findMany()
  * ```
  *
  *
@@ -176,8 +171,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Currencies
-   * const currencies = await prisma.currency.findMany()
+   * // Fetch zero or more Countries
+   * const countries = await prisma.country.findMany()
    * ```
    *
    *
@@ -274,16 +269,6 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.currency`: Exposes CRUD operations for the **Currency** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Currencies
-    * const currencies = await prisma.currency.findMany()
-    * ```
-    */
-  get currency(): Prisma.CurrencyDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.country`: Exposes CRUD operations for the **Country** model.
     * Example usage:
     * ```ts
@@ -812,7 +797,6 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Currency: 'Currency',
     Country: 'Country',
     State: 'State',
     City: 'City',
@@ -840,76 +824,10 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "currency" | "country" | "state" | "city" | "airline" | "airplane" | "airport" | "flight" | "passenger" | "booking"
+      modelProps: "country" | "state" | "city" | "airline" | "airplane" | "airport" | "flight" | "passenger" | "booking"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      Currency: {
-        payload: Prisma.$CurrencyPayload<ExtArgs>
-        fields: Prisma.CurrencyFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.CurrencyFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.CurrencyFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
-          }
-          findFirst: {
-            args: Prisma.CurrencyFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.CurrencyFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
-          }
-          findMany: {
-            args: Prisma.CurrencyFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>[]
-          }
-          create: {
-            args: Prisma.CurrencyCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
-          }
-          createMany: {
-            args: Prisma.CurrencyCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.CurrencyDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
-          }
-          update: {
-            args: Prisma.CurrencyUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
-          }
-          deleteMany: {
-            args: Prisma.CurrencyDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.CurrencyUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.CurrencyUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
-          }
-          aggregate: {
-            args: Prisma.CurrencyAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateCurrency>
-          }
-          groupBy: {
-            args: Prisma.CurrencyGroupByArgs<ExtArgs>
-            result: $Utils.Optional<CurrencyGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.CurrencyCountArgs<ExtArgs>
-            result: $Utils.Optional<CurrencyCountAggregateOutputType> | number
-          }
-        }
-      }
       Country: {
         payload: Prisma.$CountryPayload<ExtArgs>
         fields: Prisma.CountryFieldRefs
@@ -1588,7 +1506,6 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
-    currency?: CurrencyOmit
     country?: CountryOmit
     state?: StateOmit
     city?: CityOmit
@@ -1685,37 +1602,6 @@ export namespace Prisma {
   /**
    * Count Types
    */
-
-
-  /**
-   * Count Type CurrencyCountOutputType
-   */
-
-  export type CurrencyCountOutputType = {
-    countries: number
-  }
-
-  export type CurrencyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    countries?: boolean | CurrencyCountOutputTypeCountCountriesArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * CurrencyCountOutputType without action
-   */
-  export type CurrencyCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CurrencyCountOutputType
-     */
-    select?: CurrencyCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * CurrencyCountOutputType without action
-   */
-  export type CurrencyCountOutputTypeCountCountriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CountryWhereInput
-  }
 
 
   /**
@@ -2025,950 +1911,6 @@ export namespace Prisma {
    */
 
   /**
-   * Model Currency
-   */
-
-  export type AggregateCurrency = {
-    _count: CurrencyCountAggregateOutputType | null
-    _min: CurrencyMinAggregateOutputType | null
-    _max: CurrencyMaxAggregateOutputType | null
-  }
-
-  export type CurrencyMinAggregateOutputType = {
-    id: string | null
-    code: string | null
-    name: string | null
-    symbol: string | null
-  }
-
-  export type CurrencyMaxAggregateOutputType = {
-    id: string | null
-    code: string | null
-    name: string | null
-    symbol: string | null
-  }
-
-  export type CurrencyCountAggregateOutputType = {
-    id: number
-    code: number
-    name: number
-    symbol: number
-    _all: number
-  }
-
-
-  export type CurrencyMinAggregateInputType = {
-    id?: true
-    code?: true
-    name?: true
-    symbol?: true
-  }
-
-  export type CurrencyMaxAggregateInputType = {
-    id?: true
-    code?: true
-    name?: true
-    symbol?: true
-  }
-
-  export type CurrencyCountAggregateInputType = {
-    id?: true
-    code?: true
-    name?: true
-    symbol?: true
-    _all?: true
-  }
-
-  export type CurrencyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Currency to aggregate.
-     */
-    where?: CurrencyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Currencies to fetch.
-     */
-    orderBy?: CurrencyOrderByWithRelationInput | CurrencyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: CurrencyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Currencies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Currencies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Currencies
-    **/
-    _count?: true | CurrencyCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: CurrencyMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: CurrencyMaxAggregateInputType
-  }
-
-  export type GetCurrencyAggregateType<T extends CurrencyAggregateArgs> = {
-        [P in keyof T & keyof AggregateCurrency]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateCurrency[P]>
-      : GetScalarType<T[P], AggregateCurrency[P]>
-  }
-
-
-
-
-  export type CurrencyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CurrencyWhereInput
-    orderBy?: CurrencyOrderByWithAggregationInput | CurrencyOrderByWithAggregationInput[]
-    by: CurrencyScalarFieldEnum[] | CurrencyScalarFieldEnum
-    having?: CurrencyScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: CurrencyCountAggregateInputType | true
-    _min?: CurrencyMinAggregateInputType
-    _max?: CurrencyMaxAggregateInputType
-  }
-
-  export type CurrencyGroupByOutputType = {
-    id: string
-    code: string
-    name: string
-    symbol: string
-    _count: CurrencyCountAggregateOutputType | null
-    _min: CurrencyMinAggregateOutputType | null
-    _max: CurrencyMaxAggregateOutputType | null
-  }
-
-  type GetCurrencyGroupByPayload<T extends CurrencyGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<CurrencyGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof CurrencyGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], CurrencyGroupByOutputType[P]>
-            : GetScalarType<T[P], CurrencyGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type CurrencySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    code?: boolean
-    name?: boolean
-    symbol?: boolean
-    countries?: boolean | Currency$countriesArgs<ExtArgs>
-    _count?: boolean | CurrencyCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["currency"]>
-
-
-
-  export type CurrencySelectScalar = {
-    id?: boolean
-    code?: boolean
-    name?: boolean
-    symbol?: boolean
-  }
-
-  export type CurrencyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "symbol", ExtArgs["result"]["currency"]>
-  export type CurrencyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    countries?: boolean | Currency$countriesArgs<ExtArgs>
-    _count?: boolean | CurrencyCountOutputTypeDefaultArgs<ExtArgs>
-  }
-
-  export type $CurrencyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Currency"
-    objects: {
-      countries: Prisma.$CountryPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      code: string
-      name: string
-      symbol: string
-    }, ExtArgs["result"]["currency"]>
-    composites: {}
-  }
-
-  type CurrencyGetPayload<S extends boolean | null | undefined | CurrencyDefaultArgs> = $Result.GetResult<Prisma.$CurrencyPayload, S>
-
-  type CurrencyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<CurrencyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: CurrencyCountAggregateInputType | true
-    }
-
-  export interface CurrencyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Currency'], meta: { name: 'Currency' } }
-    /**
-     * Find zero or one Currency that matches the filter.
-     * @param {CurrencyFindUniqueArgs} args - Arguments to find a Currency
-     * @example
-     * // Get one Currency
-     * const currency = await prisma.currency.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends CurrencyFindUniqueArgs>(args: SelectSubset<T, CurrencyFindUniqueArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Currency that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {CurrencyFindUniqueOrThrowArgs} args - Arguments to find a Currency
-     * @example
-     * // Get one Currency
-     * const currency = await prisma.currency.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends CurrencyFindUniqueOrThrowArgs>(args: SelectSubset<T, CurrencyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Currency that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CurrencyFindFirstArgs} args - Arguments to find a Currency
-     * @example
-     * // Get one Currency
-     * const currency = await prisma.currency.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends CurrencyFindFirstArgs>(args?: SelectSubset<T, CurrencyFindFirstArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Currency that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CurrencyFindFirstOrThrowArgs} args - Arguments to find a Currency
-     * @example
-     * // Get one Currency
-     * const currency = await prisma.currency.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends CurrencyFindFirstOrThrowArgs>(args?: SelectSubset<T, CurrencyFindFirstOrThrowArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Currencies that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CurrencyFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Currencies
-     * const currencies = await prisma.currency.findMany()
-     * 
-     * // Get first 10 Currencies
-     * const currencies = await prisma.currency.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const currencyWithIdOnly = await prisma.currency.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends CurrencyFindManyArgs>(args?: SelectSubset<T, CurrencyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Currency.
-     * @param {CurrencyCreateArgs} args - Arguments to create a Currency.
-     * @example
-     * // Create one Currency
-     * const Currency = await prisma.currency.create({
-     *   data: {
-     *     // ... data to create a Currency
-     *   }
-     * })
-     * 
-     */
-    create<T extends CurrencyCreateArgs>(args: SelectSubset<T, CurrencyCreateArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Currencies.
-     * @param {CurrencyCreateManyArgs} args - Arguments to create many Currencies.
-     * @example
-     * // Create many Currencies
-     * const currency = await prisma.currency.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends CurrencyCreateManyArgs>(args?: SelectSubset<T, CurrencyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Currency.
-     * @param {CurrencyDeleteArgs} args - Arguments to delete one Currency.
-     * @example
-     * // Delete one Currency
-     * const Currency = await prisma.currency.delete({
-     *   where: {
-     *     // ... filter to delete one Currency
-     *   }
-     * })
-     * 
-     */
-    delete<T extends CurrencyDeleteArgs>(args: SelectSubset<T, CurrencyDeleteArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Currency.
-     * @param {CurrencyUpdateArgs} args - Arguments to update one Currency.
-     * @example
-     * // Update one Currency
-     * const currency = await prisma.currency.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends CurrencyUpdateArgs>(args: SelectSubset<T, CurrencyUpdateArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Currencies.
-     * @param {CurrencyDeleteManyArgs} args - Arguments to filter Currencies to delete.
-     * @example
-     * // Delete a few Currencies
-     * const { count } = await prisma.currency.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends CurrencyDeleteManyArgs>(args?: SelectSubset<T, CurrencyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Currencies.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CurrencyUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Currencies
-     * const currency = await prisma.currency.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends CurrencyUpdateManyArgs>(args: SelectSubset<T, CurrencyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Currency.
-     * @param {CurrencyUpsertArgs} args - Arguments to update or create a Currency.
-     * @example
-     * // Update or create a Currency
-     * const currency = await prisma.currency.upsert({
-     *   create: {
-     *     // ... data to create a Currency
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Currency we want to update
-     *   }
-     * })
-     */
-    upsert<T extends CurrencyUpsertArgs>(args: SelectSubset<T, CurrencyUpsertArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Currencies.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CurrencyCountArgs} args - Arguments to filter Currencies to count.
-     * @example
-     * // Count the number of Currencies
-     * const count = await prisma.currency.count({
-     *   where: {
-     *     // ... the filter for the Currencies we want to count
-     *   }
-     * })
-    **/
-    count<T extends CurrencyCountArgs>(
-      args?: Subset<T, CurrencyCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], CurrencyCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Currency.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CurrencyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends CurrencyAggregateArgs>(args: Subset<T, CurrencyAggregateArgs>): Prisma.PrismaPromise<GetCurrencyAggregateType<T>>
-
-    /**
-     * Group by Currency.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CurrencyGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends CurrencyGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: CurrencyGroupByArgs['orderBy'] }
-        : { orderBy?: CurrencyGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, CurrencyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCurrencyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Currency model
-   */
-  readonly fields: CurrencyFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Currency.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__CurrencyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    countries<T extends Currency$countriesArgs<ExtArgs> = {}>(args?: Subset<T, Currency$countriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Currency model
-   */
-  interface CurrencyFieldRefs {
-    readonly id: FieldRef<"Currency", 'String'>
-    readonly code: FieldRef<"Currency", 'String'>
-    readonly name: FieldRef<"Currency", 'String'>
-    readonly symbol: FieldRef<"Currency", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Currency findUnique
-   */
-  export type CurrencyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Currency
-     */
-    select?: CurrencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Currency
-     */
-    omit?: CurrencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CurrencyInclude<ExtArgs> | null
-    /**
-     * Filter, which Currency to fetch.
-     */
-    where: CurrencyWhereUniqueInput
-  }
-
-  /**
-   * Currency findUniqueOrThrow
-   */
-  export type CurrencyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Currency
-     */
-    select?: CurrencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Currency
-     */
-    omit?: CurrencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CurrencyInclude<ExtArgs> | null
-    /**
-     * Filter, which Currency to fetch.
-     */
-    where: CurrencyWhereUniqueInput
-  }
-
-  /**
-   * Currency findFirst
-   */
-  export type CurrencyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Currency
-     */
-    select?: CurrencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Currency
-     */
-    omit?: CurrencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CurrencyInclude<ExtArgs> | null
-    /**
-     * Filter, which Currency to fetch.
-     */
-    where?: CurrencyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Currencies to fetch.
-     */
-    orderBy?: CurrencyOrderByWithRelationInput | CurrencyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Currencies.
-     */
-    cursor?: CurrencyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Currencies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Currencies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Currencies.
-     */
-    distinct?: CurrencyScalarFieldEnum | CurrencyScalarFieldEnum[]
-  }
-
-  /**
-   * Currency findFirstOrThrow
-   */
-  export type CurrencyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Currency
-     */
-    select?: CurrencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Currency
-     */
-    omit?: CurrencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CurrencyInclude<ExtArgs> | null
-    /**
-     * Filter, which Currency to fetch.
-     */
-    where?: CurrencyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Currencies to fetch.
-     */
-    orderBy?: CurrencyOrderByWithRelationInput | CurrencyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Currencies.
-     */
-    cursor?: CurrencyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Currencies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Currencies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Currencies.
-     */
-    distinct?: CurrencyScalarFieldEnum | CurrencyScalarFieldEnum[]
-  }
-
-  /**
-   * Currency findMany
-   */
-  export type CurrencyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Currency
-     */
-    select?: CurrencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Currency
-     */
-    omit?: CurrencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CurrencyInclude<ExtArgs> | null
-    /**
-     * Filter, which Currencies to fetch.
-     */
-    where?: CurrencyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Currencies to fetch.
-     */
-    orderBy?: CurrencyOrderByWithRelationInput | CurrencyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Currencies.
-     */
-    cursor?: CurrencyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Currencies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Currencies.
-     */
-    skip?: number
-    distinct?: CurrencyScalarFieldEnum | CurrencyScalarFieldEnum[]
-  }
-
-  /**
-   * Currency create
-   */
-  export type CurrencyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Currency
-     */
-    select?: CurrencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Currency
-     */
-    omit?: CurrencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CurrencyInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Currency.
-     */
-    data: XOR<CurrencyCreateInput, CurrencyUncheckedCreateInput>
-  }
-
-  /**
-   * Currency createMany
-   */
-  export type CurrencyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Currencies.
-     */
-    data: CurrencyCreateManyInput | CurrencyCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Currency update
-   */
-  export type CurrencyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Currency
-     */
-    select?: CurrencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Currency
-     */
-    omit?: CurrencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CurrencyInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Currency.
-     */
-    data: XOR<CurrencyUpdateInput, CurrencyUncheckedUpdateInput>
-    /**
-     * Choose, which Currency to update.
-     */
-    where: CurrencyWhereUniqueInput
-  }
-
-  /**
-   * Currency updateMany
-   */
-  export type CurrencyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Currencies.
-     */
-    data: XOR<CurrencyUpdateManyMutationInput, CurrencyUncheckedUpdateManyInput>
-    /**
-     * Filter which Currencies to update
-     */
-    where?: CurrencyWhereInput
-    /**
-     * Limit how many Currencies to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Currency upsert
-   */
-  export type CurrencyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Currency
-     */
-    select?: CurrencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Currency
-     */
-    omit?: CurrencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CurrencyInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Currency to update in case it exists.
-     */
-    where: CurrencyWhereUniqueInput
-    /**
-     * In case the Currency found by the `where` argument doesn't exist, create a new Currency with this data.
-     */
-    create: XOR<CurrencyCreateInput, CurrencyUncheckedCreateInput>
-    /**
-     * In case the Currency was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<CurrencyUpdateInput, CurrencyUncheckedUpdateInput>
-  }
-
-  /**
-   * Currency delete
-   */
-  export type CurrencyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Currency
-     */
-    select?: CurrencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Currency
-     */
-    omit?: CurrencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CurrencyInclude<ExtArgs> | null
-    /**
-     * Filter which Currency to delete.
-     */
-    where: CurrencyWhereUniqueInput
-  }
-
-  /**
-   * Currency deleteMany
-   */
-  export type CurrencyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Currencies to delete
-     */
-    where?: CurrencyWhereInput
-    /**
-     * Limit how many Currencies to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Currency.countries
-   */
-  export type Currency$countriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Country
-     */
-    select?: CountrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Country
-     */
-    omit?: CountryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CountryInclude<ExtArgs> | null
-    where?: CountryWhereInput
-    orderBy?: CountryOrderByWithRelationInput | CountryOrderByWithRelationInput[]
-    cursor?: CountryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CountryScalarFieldEnum | CountryScalarFieldEnum[]
-  }
-
-  /**
-   * Currency without action
-   */
-  export type CurrencyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Currency
-     */
-    select?: CurrencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Currency
-     */
-    omit?: CurrencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CurrencyInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model Country
    */
 
@@ -2983,8 +1925,6 @@ export namespace Prisma {
     name: string | null
     countryCode: string | null
     continent: $Enums.Continent | null
-    currencyCode: string | null
-    phoneCode: string | null
   }
 
   export type CountryMaxAggregateOutputType = {
@@ -2992,8 +1932,6 @@ export namespace Prisma {
     name: string | null
     countryCode: string | null
     continent: $Enums.Continent | null
-    currencyCode: string | null
-    phoneCode: string | null
   }
 
   export type CountryCountAggregateOutputType = {
@@ -3001,8 +1939,6 @@ export namespace Prisma {
     name: number
     countryCode: number
     continent: number
-    currencyCode: number
-    phoneCode: number
     _all: number
   }
 
@@ -3012,8 +1948,6 @@ export namespace Prisma {
     name?: true
     countryCode?: true
     continent?: true
-    currencyCode?: true
-    phoneCode?: true
   }
 
   export type CountryMaxAggregateInputType = {
@@ -3021,8 +1955,6 @@ export namespace Prisma {
     name?: true
     countryCode?: true
     continent?: true
-    currencyCode?: true
-    phoneCode?: true
   }
 
   export type CountryCountAggregateInputType = {
@@ -3030,8 +1962,6 @@ export namespace Prisma {
     name?: true
     countryCode?: true
     continent?: true
-    currencyCode?: true
-    phoneCode?: true
     _all?: true
   }
 
@@ -3112,8 +2042,6 @@ export namespace Prisma {
     name: string
     countryCode: string
     continent: $Enums.Continent
-    currencyCode: string | null
-    phoneCode: string | null
     _count: CountryCountAggregateOutputType | null
     _min: CountryMinAggregateOutputType | null
     _max: CountryMaxAggregateOutputType | null
@@ -3138,13 +2066,10 @@ export namespace Prisma {
     name?: boolean
     countryCode?: boolean
     continent?: boolean
-    currencyCode?: boolean
-    phoneCode?: boolean
     airlines?: boolean | Country$airlinesArgs<ExtArgs>
     airports?: boolean | Country$airportsArgs<ExtArgs>
     cities?: boolean | Country$citiesArgs<ExtArgs>
     states?: boolean | Country$statesArgs<ExtArgs>
-    currency?: boolean | Country$currencyArgs<ExtArgs>
     _count?: boolean | CountryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["country"]>
 
@@ -3155,17 +2080,14 @@ export namespace Prisma {
     name?: boolean
     countryCode?: boolean
     continent?: boolean
-    currencyCode?: boolean
-    phoneCode?: boolean
   }
 
-  export type CountryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "countryCode" | "continent" | "currencyCode" | "phoneCode", ExtArgs["result"]["country"]>
+  export type CountryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "countryCode" | "continent", ExtArgs["result"]["country"]>
   export type CountryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     airlines?: boolean | Country$airlinesArgs<ExtArgs>
     airports?: boolean | Country$airportsArgs<ExtArgs>
     cities?: boolean | Country$citiesArgs<ExtArgs>
     states?: boolean | Country$statesArgs<ExtArgs>
-    currency?: boolean | Country$currencyArgs<ExtArgs>
     _count?: boolean | CountryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3176,15 +2098,12 @@ export namespace Prisma {
       airports: Prisma.$AirportPayload<ExtArgs>[]
       cities: Prisma.$CityPayload<ExtArgs>[]
       states: Prisma.$StatePayload<ExtArgs>[]
-      currency: Prisma.$CurrencyPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       countryCode: string
       continent: $Enums.Continent
-      currencyCode: string | null
-      phoneCode: string | null
     }, ExtArgs["result"]["country"]>
     composites: {}
   }
@@ -3529,7 +2448,6 @@ export namespace Prisma {
     airports<T extends Country$airportsArgs<ExtArgs> = {}>(args?: Subset<T, Country$airportsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AirportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     cities<T extends Country$citiesArgs<ExtArgs> = {}>(args?: Subset<T, Country$citiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     states<T extends Country$statesArgs<ExtArgs> = {}>(args?: Subset<T, Country$statesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    currency<T extends Country$currencyArgs<ExtArgs> = {}>(args?: Subset<T, Country$currencyArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3563,8 +2481,6 @@ export namespace Prisma {
     readonly name: FieldRef<"Country", 'String'>
     readonly countryCode: FieldRef<"Country", 'String'>
     readonly continent: FieldRef<"Country", 'Continent'>
-    readonly currencyCode: FieldRef<"Country", 'String'>
-    readonly phoneCode: FieldRef<"Country", 'String'>
   }
     
 
@@ -4001,25 +2917,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StateScalarFieldEnum | StateScalarFieldEnum[]
-  }
-
-  /**
-   * Country.currency
-   */
-  export type Country$currencyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Currency
-     */
-    select?: CurrencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Currency
-     */
-    omit?: CurrencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CurrencyInclude<ExtArgs> | null
-    where?: CurrencyWhereInput
   }
 
   /**
@@ -12360,23 +11257,11 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const CurrencyScalarFieldEnum: {
-    id: 'id',
-    code: 'code',
-    name: 'name',
-    symbol: 'symbol'
-  };
-
-  export type CurrencyScalarFieldEnum = (typeof CurrencyScalarFieldEnum)[keyof typeof CurrencyScalarFieldEnum]
-
-
   export const CountryScalarFieldEnum: {
     id: 'id',
     name: 'name',
     countryCode: 'countryCode',
-    continent: 'continent',
-    currencyCode: 'currencyCode',
-    phoneCode: 'phoneCode'
+    continent: 'continent'
   };
 
   export type CountryScalarFieldEnum = (typeof CountryScalarFieldEnum)[keyof typeof CountryScalarFieldEnum]
@@ -12516,30 +11401,10 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const CurrencyOrderByRelevanceFieldEnum: {
-    id: 'id',
-    code: 'code',
-    name: 'name',
-    symbol: 'symbol'
-  };
-
-  export type CurrencyOrderByRelevanceFieldEnum = (typeof CurrencyOrderByRelevanceFieldEnum)[keyof typeof CurrencyOrderByRelevanceFieldEnum]
-
-
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
   export const CountryOrderByRelevanceFieldEnum: {
     id: 'id',
     name: 'name',
-    countryCode: 'countryCode',
-    currencyCode: 'currencyCode',
-    phoneCode: 'phoneCode'
+    countryCode: 'countryCode'
   };
 
   export type CountryOrderByRelevanceFieldEnum = (typeof CountryOrderByRelevanceFieldEnum)[keyof typeof CountryOrderByRelevanceFieldEnum]
@@ -12553,6 +11418,14 @@ export namespace Prisma {
   };
 
   export type StateOrderByRelevanceFieldEnum = (typeof StateOrderByRelevanceFieldEnum)[keyof typeof StateOrderByRelevanceFieldEnum]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   export const CityOrderByRelevanceFieldEnum: {
@@ -12720,57 +11593,6 @@ export namespace Prisma {
    */
 
 
-  export type CurrencyWhereInput = {
-    AND?: CurrencyWhereInput | CurrencyWhereInput[]
-    OR?: CurrencyWhereInput[]
-    NOT?: CurrencyWhereInput | CurrencyWhereInput[]
-    id?: StringFilter<"Currency"> | string
-    code?: StringFilter<"Currency"> | string
-    name?: StringFilter<"Currency"> | string
-    symbol?: StringFilter<"Currency"> | string
-    countries?: CountryListRelationFilter
-  }
-
-  export type CurrencyOrderByWithRelationInput = {
-    id?: SortOrder
-    code?: SortOrder
-    name?: SortOrder
-    symbol?: SortOrder
-    countries?: CountryOrderByRelationAggregateInput
-    _relevance?: CurrencyOrderByRelevanceInput
-  }
-
-  export type CurrencyWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: CurrencyWhereInput | CurrencyWhereInput[]
-    OR?: CurrencyWhereInput[]
-    NOT?: CurrencyWhereInput | CurrencyWhereInput[]
-    code?: StringFilter<"Currency"> | string
-    name?: StringFilter<"Currency"> | string
-    symbol?: StringFilter<"Currency"> | string
-    countries?: CountryListRelationFilter
-  }, "id">
-
-  export type CurrencyOrderByWithAggregationInput = {
-    id?: SortOrder
-    code?: SortOrder
-    name?: SortOrder
-    symbol?: SortOrder
-    _count?: CurrencyCountOrderByAggregateInput
-    _max?: CurrencyMaxOrderByAggregateInput
-    _min?: CurrencyMinOrderByAggregateInput
-  }
-
-  export type CurrencyScalarWhereWithAggregatesInput = {
-    AND?: CurrencyScalarWhereWithAggregatesInput | CurrencyScalarWhereWithAggregatesInput[]
-    OR?: CurrencyScalarWhereWithAggregatesInput[]
-    NOT?: CurrencyScalarWhereWithAggregatesInput | CurrencyScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Currency"> | string
-    code?: StringWithAggregatesFilter<"Currency"> | string
-    name?: StringWithAggregatesFilter<"Currency"> | string
-    symbol?: StringWithAggregatesFilter<"Currency"> | string
-  }
-
   export type CountryWhereInput = {
     AND?: CountryWhereInput | CountryWhereInput[]
     OR?: CountryWhereInput[]
@@ -12779,13 +11601,10 @@ export namespace Prisma {
     name?: StringFilter<"Country"> | string
     countryCode?: StringFilter<"Country"> | string
     continent?: EnumContinentFilter<"Country"> | $Enums.Continent
-    currencyCode?: StringNullableFilter<"Country"> | string | null
-    phoneCode?: StringNullableFilter<"Country"> | string | null
     airlines?: AirlineListRelationFilter
     airports?: AirportListRelationFilter
     cities?: CityListRelationFilter
     states?: StateListRelationFilter
-    currency?: XOR<CurrencyNullableScalarRelationFilter, CurrencyWhereInput> | null
   }
 
   export type CountryOrderByWithRelationInput = {
@@ -12793,13 +11612,10 @@ export namespace Prisma {
     name?: SortOrder
     countryCode?: SortOrder
     continent?: SortOrder
-    currencyCode?: SortOrderInput | SortOrder
-    phoneCode?: SortOrderInput | SortOrder
     airlines?: AirlineOrderByRelationAggregateInput
     airports?: AirportOrderByRelationAggregateInput
     cities?: CityOrderByRelationAggregateInput
     states?: StateOrderByRelationAggregateInput
-    currency?: CurrencyOrderByWithRelationInput
     _relevance?: CountryOrderByRelevanceInput
   }
 
@@ -12812,13 +11628,10 @@ export namespace Prisma {
     name?: StringFilter<"Country"> | string
     countryCode?: StringFilter<"Country"> | string
     continent?: EnumContinentFilter<"Country"> | $Enums.Continent
-    currencyCode?: StringNullableFilter<"Country"> | string | null
-    phoneCode?: StringNullableFilter<"Country"> | string | null
     airlines?: AirlineListRelationFilter
     airports?: AirportListRelationFilter
     cities?: CityListRelationFilter
     states?: StateListRelationFilter
-    currency?: XOR<CurrencyNullableScalarRelationFilter, CurrencyWhereInput> | null
   }, "id" | "name_countryCode">
 
   export type CountryOrderByWithAggregationInput = {
@@ -12826,8 +11639,6 @@ export namespace Prisma {
     name?: SortOrder
     countryCode?: SortOrder
     continent?: SortOrder
-    currencyCode?: SortOrderInput | SortOrder
-    phoneCode?: SortOrderInput | SortOrder
     _count?: CountryCountOrderByAggregateInput
     _max?: CountryMaxOrderByAggregateInput
     _min?: CountryMinOrderByAggregateInput
@@ -12841,8 +11652,6 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Country"> | string
     countryCode?: StringWithAggregatesFilter<"Country"> | string
     continent?: EnumContinentWithAggregatesFilter<"Country"> | $Enums.Continent
-    currencyCode?: StringNullableWithAggregatesFilter<"Country"> | string | null
-    phoneCode?: StringNullableWithAggregatesFilter<"Country"> | string | null
   }
 
   export type StateWhereInput = {
@@ -13541,70 +12350,15 @@ export namespace Prisma {
     bookingStatus?: EnumBookingStatusWithAggregatesFilter<"Booking"> | $Enums.BookingStatus
   }
 
-  export type CurrencyCreateInput = {
-    id?: string
-    code: string
-    name: string
-    symbol: string
-    countries?: CountryCreateNestedManyWithoutCurrencyInput
-  }
-
-  export type CurrencyUncheckedCreateInput = {
-    id?: string
-    code: string
-    name: string
-    symbol: string
-    countries?: CountryUncheckedCreateNestedManyWithoutCurrencyInput
-  }
-
-  export type CurrencyUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    symbol?: StringFieldUpdateOperationsInput | string
-    countries?: CountryUpdateManyWithoutCurrencyNestedInput
-  }
-
-  export type CurrencyUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    symbol?: StringFieldUpdateOperationsInput | string
-    countries?: CountryUncheckedUpdateManyWithoutCurrencyNestedInput
-  }
-
-  export type CurrencyCreateManyInput = {
-    id?: string
-    code: string
-    name: string
-    symbol: string
-  }
-
-  export type CurrencyUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    symbol?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type CurrencyUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    symbol?: StringFieldUpdateOperationsInput | string
-  }
-
   export type CountryCreateInput = {
     id?: string
     name: string
     countryCode: string
     continent: $Enums.Continent
-    phoneCode?: string | null
     airlines?: AirlineCreateNestedManyWithoutCountryInput
     airports?: AirportCreateNestedManyWithoutCountryInput
     cities?: CityCreateNestedManyWithoutCountryInput
     states?: StateCreateNestedManyWithoutCountryInput
-    currency?: CurrencyCreateNestedOneWithoutCountriesInput
   }
 
   export type CountryUncheckedCreateInput = {
@@ -13612,8 +12366,6 @@ export namespace Prisma {
     name: string
     countryCode: string
     continent: $Enums.Continent
-    currencyCode?: string | null
-    phoneCode?: string | null
     airlines?: AirlineUncheckedCreateNestedManyWithoutCountryInput
     airports?: AirportUncheckedCreateNestedManyWithoutCountryInput
     cities?: CityUncheckedCreateNestedManyWithoutCountryInput
@@ -13625,12 +12377,10 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     countryCode?: StringFieldUpdateOperationsInput | string
     continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
     airlines?: AirlineUpdateManyWithoutCountryNestedInput
     airports?: AirportUpdateManyWithoutCountryNestedInput
     cities?: CityUpdateManyWithoutCountryNestedInput
     states?: StateUpdateManyWithoutCountryNestedInput
-    currency?: CurrencyUpdateOneWithoutCountriesNestedInput
   }
 
   export type CountryUncheckedUpdateInput = {
@@ -13638,8 +12388,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     countryCode?: StringFieldUpdateOperationsInput | string
     continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    currencyCode?: NullableStringFieldUpdateOperationsInput | string | null
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
     airlines?: AirlineUncheckedUpdateManyWithoutCountryNestedInput
     airports?: AirportUncheckedUpdateManyWithoutCountryNestedInput
     cities?: CityUncheckedUpdateManyWithoutCountryNestedInput
@@ -13651,8 +12399,6 @@ export namespace Prisma {
     name: string
     countryCode: string
     continent: $Enums.Continent
-    currencyCode?: string | null
-    phoneCode?: string | null
   }
 
   export type CountryUpdateManyMutationInput = {
@@ -13660,7 +12406,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     countryCode?: StringFieldUpdateOperationsInput | string
     continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CountryUncheckedUpdateManyInput = {
@@ -13668,8 +12413,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     countryCode?: StringFieldUpdateOperationsInput | string
     continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    currencyCode?: NullableStringFieldUpdateOperationsInput | string | null
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StateCreateInput = {
@@ -14427,81 +13170,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type CountryListRelationFilter = {
-    every?: CountryWhereInput
-    some?: CountryWhereInput
-    none?: CountryWhereInput
-  }
-
-  export type CountryOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type CurrencyOrderByRelevanceInput = {
-    fields: CurrencyOrderByRelevanceFieldEnum | CurrencyOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type CurrencyCountOrderByAggregateInput = {
-    id?: SortOrder
-    code?: SortOrder
-    name?: SortOrder
-    symbol?: SortOrder
-  }
-
-  export type CurrencyMaxOrderByAggregateInput = {
-    id?: SortOrder
-    code?: SortOrder
-    name?: SortOrder
-    symbol?: SortOrder
-  }
-
-  export type CurrencyMinOrderByAggregateInput = {
-    id?: SortOrder
-    code?: SortOrder
-    name?: SortOrder
-    symbol?: SortOrder
-  }
-
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
   export type EnumContinentFilter<$PrismaModel = never> = {
     equals?: $Enums.Continent | EnumContinentFieldRefInput<$PrismaModel>
     in?: $Enums.Continent[]
     notIn?: $Enums.Continent[]
     not?: NestedEnumContinentFilter<$PrismaModel> | $Enums.Continent
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type AirlineListRelationFilter = {
@@ -14526,16 +13199,6 @@ export namespace Prisma {
     every?: StateWhereInput
     some?: StateWhereInput
     none?: StateWhereInput
-  }
-
-  export type CurrencyNullableScalarRelationFilter = {
-    is?: CurrencyWhereInput | null
-    isNot?: CurrencyWhereInput | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type AirlineOrderByRelationAggregateInput = {
@@ -14570,8 +13233,6 @@ export namespace Prisma {
     name?: SortOrder
     countryCode?: SortOrder
     continent?: SortOrder
-    currencyCode?: SortOrder
-    phoneCode?: SortOrder
   }
 
   export type CountryMaxOrderByAggregateInput = {
@@ -14579,8 +13240,6 @@ export namespace Prisma {
     name?: SortOrder
     countryCode?: SortOrder
     continent?: SortOrder
-    currencyCode?: SortOrder
-    phoneCode?: SortOrder
   }
 
   export type CountryMinOrderByAggregateInput = {
@@ -14588,8 +13247,24 @@ export namespace Prisma {
     name?: SortOrder
     countryCode?: SortOrder
     continent?: SortOrder
-    currencyCode?: SortOrder
-    phoneCode?: SortOrder
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type EnumContinentWithAggregatesFilter<$PrismaModel = never> = {
@@ -14600,24 +13275,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumContinentFilter<$PrismaModel>
     _max?: NestedEnumContinentFilter<$PrismaModel>
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type CountryScalarRelationFilter = {
@@ -14662,6 +13319,21 @@ export namespace Prisma {
     countryId?: SortOrder
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -14676,6 +13348,11 @@ export namespace Prisma {
   export type StateNullableScalarRelationFilter = {
     is?: StateWhereInput | null
     isNot?: StateWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type CityOrderByRelevanceInput = {
@@ -14717,6 +13394,24 @@ export namespace Prisma {
     stateCountryKey?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -15263,52 +13958,6 @@ export namespace Prisma {
     _max?: NestedEnumBookingStatusFilter<$PrismaModel>
   }
 
-  export type CountryCreateNestedManyWithoutCurrencyInput = {
-    create?: XOR<CountryCreateWithoutCurrencyInput, CountryUncheckedCreateWithoutCurrencyInput> | CountryCreateWithoutCurrencyInput[] | CountryUncheckedCreateWithoutCurrencyInput[]
-    connectOrCreate?: CountryCreateOrConnectWithoutCurrencyInput | CountryCreateOrConnectWithoutCurrencyInput[]
-    createMany?: CountryCreateManyCurrencyInputEnvelope
-    connect?: CountryWhereUniqueInput | CountryWhereUniqueInput[]
-  }
-
-  export type CountryUncheckedCreateNestedManyWithoutCurrencyInput = {
-    create?: XOR<CountryCreateWithoutCurrencyInput, CountryUncheckedCreateWithoutCurrencyInput> | CountryCreateWithoutCurrencyInput[] | CountryUncheckedCreateWithoutCurrencyInput[]
-    connectOrCreate?: CountryCreateOrConnectWithoutCurrencyInput | CountryCreateOrConnectWithoutCurrencyInput[]
-    createMany?: CountryCreateManyCurrencyInputEnvelope
-    connect?: CountryWhereUniqueInput | CountryWhereUniqueInput[]
-  }
-
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
-  export type CountryUpdateManyWithoutCurrencyNestedInput = {
-    create?: XOR<CountryCreateWithoutCurrencyInput, CountryUncheckedCreateWithoutCurrencyInput> | CountryCreateWithoutCurrencyInput[] | CountryUncheckedCreateWithoutCurrencyInput[]
-    connectOrCreate?: CountryCreateOrConnectWithoutCurrencyInput | CountryCreateOrConnectWithoutCurrencyInput[]
-    upsert?: CountryUpsertWithWhereUniqueWithoutCurrencyInput | CountryUpsertWithWhereUniqueWithoutCurrencyInput[]
-    createMany?: CountryCreateManyCurrencyInputEnvelope
-    set?: CountryWhereUniqueInput | CountryWhereUniqueInput[]
-    disconnect?: CountryWhereUniqueInput | CountryWhereUniqueInput[]
-    delete?: CountryWhereUniqueInput | CountryWhereUniqueInput[]
-    connect?: CountryWhereUniqueInput | CountryWhereUniqueInput[]
-    update?: CountryUpdateWithWhereUniqueWithoutCurrencyInput | CountryUpdateWithWhereUniqueWithoutCurrencyInput[]
-    updateMany?: CountryUpdateManyWithWhereWithoutCurrencyInput | CountryUpdateManyWithWhereWithoutCurrencyInput[]
-    deleteMany?: CountryScalarWhereInput | CountryScalarWhereInput[]
-  }
-
-  export type CountryUncheckedUpdateManyWithoutCurrencyNestedInput = {
-    create?: XOR<CountryCreateWithoutCurrencyInput, CountryUncheckedCreateWithoutCurrencyInput> | CountryCreateWithoutCurrencyInput[] | CountryUncheckedCreateWithoutCurrencyInput[]
-    connectOrCreate?: CountryCreateOrConnectWithoutCurrencyInput | CountryCreateOrConnectWithoutCurrencyInput[]
-    upsert?: CountryUpsertWithWhereUniqueWithoutCurrencyInput | CountryUpsertWithWhereUniqueWithoutCurrencyInput[]
-    createMany?: CountryCreateManyCurrencyInputEnvelope
-    set?: CountryWhereUniqueInput | CountryWhereUniqueInput[]
-    disconnect?: CountryWhereUniqueInput | CountryWhereUniqueInput[]
-    delete?: CountryWhereUniqueInput | CountryWhereUniqueInput[]
-    connect?: CountryWhereUniqueInput | CountryWhereUniqueInput[]
-    update?: CountryUpdateWithWhereUniqueWithoutCurrencyInput | CountryUpdateWithWhereUniqueWithoutCurrencyInput[]
-    updateMany?: CountryUpdateManyWithWhereWithoutCurrencyInput | CountryUpdateManyWithWhereWithoutCurrencyInput[]
-    deleteMany?: CountryScalarWhereInput | CountryScalarWhereInput[]
-  }
-
   export type AirlineCreateNestedManyWithoutCountryInput = {
     create?: XOR<AirlineCreateWithoutCountryInput, AirlineUncheckedCreateWithoutCountryInput> | AirlineCreateWithoutCountryInput[] | AirlineUncheckedCreateWithoutCountryInput[]
     connectOrCreate?: AirlineCreateOrConnectWithoutCountryInput | AirlineCreateOrConnectWithoutCountryInput[]
@@ -15335,12 +13984,6 @@ export namespace Prisma {
     connectOrCreate?: StateCreateOrConnectWithoutCountryInput | StateCreateOrConnectWithoutCountryInput[]
     createMany?: StateCreateManyCountryInputEnvelope
     connect?: StateWhereUniqueInput | StateWhereUniqueInput[]
-  }
-
-  export type CurrencyCreateNestedOneWithoutCountriesInput = {
-    create?: XOR<CurrencyCreateWithoutCountriesInput, CurrencyUncheckedCreateWithoutCountriesInput>
-    connectOrCreate?: CurrencyCreateOrConnectWithoutCountriesInput
-    connect?: CurrencyWhereUniqueInput
   }
 
   export type AirlineUncheckedCreateNestedManyWithoutCountryInput = {
@@ -15371,12 +14014,12 @@ export namespace Prisma {
     connect?: StateWhereUniqueInput | StateWhereUniqueInput[]
   }
 
-  export type EnumContinentFieldUpdateOperationsInput = {
-    set?: $Enums.Continent
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type EnumContinentFieldUpdateOperationsInput = {
+    set?: $Enums.Continent
   }
 
   export type AirlineUpdateManyWithoutCountryNestedInput = {
@@ -15433,16 +14076,6 @@ export namespace Prisma {
     update?: StateUpdateWithWhereUniqueWithoutCountryInput | StateUpdateWithWhereUniqueWithoutCountryInput[]
     updateMany?: StateUpdateManyWithWhereWithoutCountryInput | StateUpdateManyWithWhereWithoutCountryInput[]
     deleteMany?: StateScalarWhereInput | StateScalarWhereInput[]
-  }
-
-  export type CurrencyUpdateOneWithoutCountriesNestedInput = {
-    create?: XOR<CurrencyCreateWithoutCountriesInput, CurrencyUncheckedCreateWithoutCountriesInput>
-    connectOrCreate?: CurrencyCreateOrConnectWithoutCountriesInput
-    upsert?: CurrencyUpsertWithoutCountriesInput
-    disconnect?: CurrencyWhereInput | boolean
-    delete?: CurrencyWhereInput | boolean
-    connect?: CurrencyWhereUniqueInput
-    update?: XOR<XOR<CurrencyUpdateToOneWithWhereWithoutCountriesInput, CurrencyUpdateWithoutCountriesInput>, CurrencyUncheckedUpdateWithoutCountriesInput>
   }
 
   export type AirlineUncheckedUpdateManyWithoutCountryNestedInput = {
@@ -15659,6 +14292,10 @@ export namespace Prisma {
     update?: AirportUpdateWithWhereUniqueWithoutCityInput | AirportUpdateWithWhereUniqueWithoutCityInput[]
     updateMany?: AirportUpdateManyWithWhereWithoutCityInput | AirportUpdateManyWithWhereWithoutCityInput[]
     deleteMany?: AirportScalarWhereInput | AirportScalarWhereInput[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type AirportUncheckedUpdateManyWithoutCityNestedInput = {
@@ -16174,6 +14811,13 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedEnumContinentFilter<$PrismaModel = never> = {
+    equals?: $Enums.Continent | EnumContinentFieldRefInput<$PrismaModel>
+    in?: $Enums.Continent[]
+    notIn?: $Enums.Continent[]
+    not?: NestedEnumContinentFilter<$PrismaModel> | $Enums.Continent
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -16203,11 +14847,14 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedEnumContinentFilter<$PrismaModel = never> = {
+  export type NestedEnumContinentWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.Continent | EnumContinentFieldRefInput<$PrismaModel>
     in?: $Enums.Continent[]
     notIn?: $Enums.Continent[]
-    not?: NestedEnumContinentFilter<$PrismaModel> | $Enums.Continent
+    not?: NestedEnumContinentWithAggregatesFilter<$PrismaModel> | $Enums.Continent
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumContinentFilter<$PrismaModel>
+    _max?: NestedEnumContinentFilter<$PrismaModel>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -16225,14 +14872,15 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedEnumContinentWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Continent | EnumContinentFieldRefInput<$PrismaModel>
-    in?: $Enums.Continent[]
-    notIn?: $Enums.Continent[]
-    not?: NestedEnumContinentWithAggregatesFilter<$PrismaModel> | $Enums.Continent
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumContinentFilter<$PrismaModel>
-    _max?: NestedEnumContinentFilter<$PrismaModel>
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -16262,17 +14910,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -16413,68 +15050,6 @@ export namespace Prisma {
     _max?: NestedEnumBookingStatusFilter<$PrismaModel>
   }
 
-  export type CountryCreateWithoutCurrencyInput = {
-    id?: string
-    name: string
-    countryCode: string
-    continent: $Enums.Continent
-    phoneCode?: string | null
-    airlines?: AirlineCreateNestedManyWithoutCountryInput
-    airports?: AirportCreateNestedManyWithoutCountryInput
-    cities?: CityCreateNestedManyWithoutCountryInput
-    states?: StateCreateNestedManyWithoutCountryInput
-  }
-
-  export type CountryUncheckedCreateWithoutCurrencyInput = {
-    id?: string
-    name: string
-    countryCode: string
-    continent: $Enums.Continent
-    phoneCode?: string | null
-    airlines?: AirlineUncheckedCreateNestedManyWithoutCountryInput
-    airports?: AirportUncheckedCreateNestedManyWithoutCountryInput
-    cities?: CityUncheckedCreateNestedManyWithoutCountryInput
-    states?: StateUncheckedCreateNestedManyWithoutCountryInput
-  }
-
-  export type CountryCreateOrConnectWithoutCurrencyInput = {
-    where: CountryWhereUniqueInput
-    create: XOR<CountryCreateWithoutCurrencyInput, CountryUncheckedCreateWithoutCurrencyInput>
-  }
-
-  export type CountryCreateManyCurrencyInputEnvelope = {
-    data: CountryCreateManyCurrencyInput | CountryCreateManyCurrencyInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CountryUpsertWithWhereUniqueWithoutCurrencyInput = {
-    where: CountryWhereUniqueInput
-    update: XOR<CountryUpdateWithoutCurrencyInput, CountryUncheckedUpdateWithoutCurrencyInput>
-    create: XOR<CountryCreateWithoutCurrencyInput, CountryUncheckedCreateWithoutCurrencyInput>
-  }
-
-  export type CountryUpdateWithWhereUniqueWithoutCurrencyInput = {
-    where: CountryWhereUniqueInput
-    data: XOR<CountryUpdateWithoutCurrencyInput, CountryUncheckedUpdateWithoutCurrencyInput>
-  }
-
-  export type CountryUpdateManyWithWhereWithoutCurrencyInput = {
-    where: CountryScalarWhereInput
-    data: XOR<CountryUpdateManyMutationInput, CountryUncheckedUpdateManyWithoutCurrencyInput>
-  }
-
-  export type CountryScalarWhereInput = {
-    AND?: CountryScalarWhereInput | CountryScalarWhereInput[]
-    OR?: CountryScalarWhereInput[]
-    NOT?: CountryScalarWhereInput | CountryScalarWhereInput[]
-    id?: StringFilter<"Country"> | string
-    name?: StringFilter<"Country"> | string
-    countryCode?: StringFilter<"Country"> | string
-    continent?: EnumContinentFilter<"Country"> | $Enums.Continent
-    currencyCode?: StringNullableFilter<"Country"> | string | null
-    phoneCode?: StringNullableFilter<"Country"> | string | null
-  }
-
   export type AirlineCreateWithoutCountryInput = {
     id?: string
     name: string
@@ -16607,25 +15182,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type CurrencyCreateWithoutCountriesInput = {
-    id?: string
-    code: string
-    name: string
-    symbol: string
-  }
-
-  export type CurrencyUncheckedCreateWithoutCountriesInput = {
-    id?: string
-    code: string
-    name: string
-    symbol: string
-  }
-
-  export type CurrencyCreateOrConnectWithoutCountriesInput = {
-    where: CurrencyWhereUniqueInput
-    create: XOR<CurrencyCreateWithoutCountriesInput, CurrencyUncheckedCreateWithoutCountriesInput>
-  }
-
   export type AirlineUpsertWithWhereUniqueWithoutCountryInput = {
     where: AirlineWhereUniqueInput
     update: XOR<AirlineUpdateWithoutCountryInput, AirlineUncheckedUpdateWithoutCountryInput>
@@ -16745,41 +15301,14 @@ export namespace Prisma {
     countryId?: StringFilter<"State"> | string
   }
 
-  export type CurrencyUpsertWithoutCountriesInput = {
-    update: XOR<CurrencyUpdateWithoutCountriesInput, CurrencyUncheckedUpdateWithoutCountriesInput>
-    create: XOR<CurrencyCreateWithoutCountriesInput, CurrencyUncheckedCreateWithoutCountriesInput>
-    where?: CurrencyWhereInput
-  }
-
-  export type CurrencyUpdateToOneWithWhereWithoutCountriesInput = {
-    where?: CurrencyWhereInput
-    data: XOR<CurrencyUpdateWithoutCountriesInput, CurrencyUncheckedUpdateWithoutCountriesInput>
-  }
-
-  export type CurrencyUpdateWithoutCountriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    symbol?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type CurrencyUncheckedUpdateWithoutCountriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    symbol?: StringFieldUpdateOperationsInput | string
-  }
-
   export type CountryCreateWithoutStatesInput = {
     id?: string
     name: string
     countryCode: string
     continent: $Enums.Continent
-    phoneCode?: string | null
     airlines?: AirlineCreateNestedManyWithoutCountryInput
     airports?: AirportCreateNestedManyWithoutCountryInput
     cities?: CityCreateNestedManyWithoutCountryInput
-    currency?: CurrencyCreateNestedOneWithoutCountriesInput
   }
 
   export type CountryUncheckedCreateWithoutStatesInput = {
@@ -16787,8 +15316,6 @@ export namespace Prisma {
     name: string
     countryCode: string
     continent: $Enums.Continent
-    currencyCode?: string | null
-    phoneCode?: string | null
     airlines?: AirlineUncheckedCreateNestedManyWithoutCountryInput
     airports?: AirportUncheckedCreateNestedManyWithoutCountryInput
     cities?: CityUncheckedCreateNestedManyWithoutCountryInput
@@ -16891,11 +15418,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     countryCode?: StringFieldUpdateOperationsInput | string
     continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
     airlines?: AirlineUpdateManyWithoutCountryNestedInput
     airports?: AirportUpdateManyWithoutCountryNestedInput
     cities?: CityUpdateManyWithoutCountryNestedInput
-    currency?: CurrencyUpdateOneWithoutCountriesNestedInput
   }
 
   export type CountryUncheckedUpdateWithoutStatesInput = {
@@ -16903,8 +15428,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     countryCode?: StringFieldUpdateOperationsInput | string
     continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    currencyCode?: NullableStringFieldUpdateOperationsInput | string | null
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
     airlines?: AirlineUncheckedUpdateManyWithoutCountryNestedInput
     airports?: AirportUncheckedUpdateManyWithoutCountryNestedInput
     cities?: CityUncheckedUpdateManyWithoutCountryNestedInput
@@ -16968,11 +15491,9 @@ export namespace Prisma {
     name: string
     countryCode: string
     continent: $Enums.Continent
-    phoneCode?: string | null
     airlines?: AirlineCreateNestedManyWithoutCountryInput
     airports?: AirportCreateNestedManyWithoutCountryInput
     states?: StateCreateNestedManyWithoutCountryInput
-    currency?: CurrencyCreateNestedOneWithoutCountriesInput
   }
 
   export type CountryUncheckedCreateWithoutCitiesInput = {
@@ -16980,8 +15501,6 @@ export namespace Prisma {
     name: string
     countryCode: string
     continent: $Enums.Continent
-    currencyCode?: string | null
-    phoneCode?: string | null
     airlines?: AirlineUncheckedCreateNestedManyWithoutCountryInput
     airports?: AirportUncheckedCreateNestedManyWithoutCountryInput
     states?: StateUncheckedCreateNestedManyWithoutCountryInput
@@ -17081,11 +15600,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     countryCode?: StringFieldUpdateOperationsInput | string
     continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
     airlines?: AirlineUpdateManyWithoutCountryNestedInput
     airports?: AirportUpdateManyWithoutCountryNestedInput
     states?: StateUpdateManyWithoutCountryNestedInput
-    currency?: CurrencyUpdateOneWithoutCountriesNestedInput
   }
 
   export type CountryUncheckedUpdateWithoutCitiesInput = {
@@ -17093,8 +15610,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     countryCode?: StringFieldUpdateOperationsInput | string
     continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    currencyCode?: NullableStringFieldUpdateOperationsInput | string | null
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
     airlines?: AirlineUncheckedUpdateManyWithoutCountryNestedInput
     airports?: AirportUncheckedUpdateManyWithoutCountryNestedInput
     states?: StateUncheckedUpdateManyWithoutCountryNestedInput
@@ -17121,11 +15636,9 @@ export namespace Prisma {
     name: string
     countryCode: string
     continent: $Enums.Continent
-    phoneCode?: string | null
     airports?: AirportCreateNestedManyWithoutCountryInput
     cities?: CityCreateNestedManyWithoutCountryInput
     states?: StateCreateNestedManyWithoutCountryInput
-    currency?: CurrencyCreateNestedOneWithoutCountriesInput
   }
 
   export type CountryUncheckedCreateWithoutAirlinesInput = {
@@ -17133,8 +15646,6 @@ export namespace Prisma {
     name: string
     countryCode: string
     continent: $Enums.Continent
-    currencyCode?: string | null
-    phoneCode?: string | null
     airports?: AirportUncheckedCreateNestedManyWithoutCountryInput
     cities?: CityUncheckedCreateNestedManyWithoutCountryInput
     states?: StateUncheckedCreateNestedManyWithoutCountryInput
@@ -17237,11 +15748,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     countryCode?: StringFieldUpdateOperationsInput | string
     continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
     airports?: AirportUpdateManyWithoutCountryNestedInput
     cities?: CityUpdateManyWithoutCountryNestedInput
     states?: StateUpdateManyWithoutCountryNestedInput
-    currency?: CurrencyUpdateOneWithoutCountriesNestedInput
   }
 
   export type CountryUncheckedUpdateWithoutAirlinesInput = {
@@ -17249,8 +15758,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     countryCode?: StringFieldUpdateOperationsInput | string
     continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    currencyCode?: NullableStringFieldUpdateOperationsInput | string | null
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
     airports?: AirportUncheckedUpdateManyWithoutCountryNestedInput
     cities?: CityUncheckedUpdateManyWithoutCountryNestedInput
     states?: StateUncheckedUpdateManyWithoutCountryNestedInput
@@ -17466,11 +15973,9 @@ export namespace Prisma {
     name: string
     countryCode: string
     continent: $Enums.Continent
-    phoneCode?: string | null
     airlines?: AirlineCreateNestedManyWithoutCountryInput
     cities?: CityCreateNestedManyWithoutCountryInput
     states?: StateCreateNestedManyWithoutCountryInput
-    currency?: CurrencyCreateNestedOneWithoutCountriesInput
   }
 
   export type CountryUncheckedCreateWithoutAirportsInput = {
@@ -17478,8 +15983,6 @@ export namespace Prisma {
     name: string
     countryCode: string
     continent: $Enums.Continent
-    currencyCode?: string | null
-    phoneCode?: string | null
     airlines?: AirlineUncheckedCreateNestedManyWithoutCountryInput
     cities?: CityUncheckedCreateNestedManyWithoutCountryInput
     states?: StateUncheckedCreateNestedManyWithoutCountryInput
@@ -17642,11 +16145,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     countryCode?: StringFieldUpdateOperationsInput | string
     continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
     airlines?: AirlineUpdateManyWithoutCountryNestedInput
     cities?: CityUpdateManyWithoutCountryNestedInput
     states?: StateUpdateManyWithoutCountryNestedInput
-    currency?: CurrencyUpdateOneWithoutCountriesNestedInput
   }
 
   export type CountryUncheckedUpdateWithoutAirportsInput = {
@@ -17654,8 +16155,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     countryCode?: StringFieldUpdateOperationsInput | string
     continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    currencyCode?: NullableStringFieldUpdateOperationsInput | string | null
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
     airlines?: AirlineUncheckedUpdateManyWithoutCountryNestedInput
     cities?: CityUncheckedUpdateManyWithoutCountryNestedInput
     states?: StateUncheckedUpdateManyWithoutCountryNestedInput
@@ -18295,46 +16794,6 @@ export namespace Prisma {
     toAirportId?: StringFieldUpdateOperationsInput | string
     flightNumber?: StringFieldUpdateOperationsInput | string
     flightStatus?: EnumFlightStatusFieldUpdateOperationsInput | $Enums.FlightStatus
-  }
-
-  export type CountryCreateManyCurrencyInput = {
-    id?: string
-    name: string
-    countryCode: string
-    continent: $Enums.Continent
-    phoneCode?: string | null
-  }
-
-  export type CountryUpdateWithoutCurrencyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    countryCode?: StringFieldUpdateOperationsInput | string
-    continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
-    airlines?: AirlineUpdateManyWithoutCountryNestedInput
-    airports?: AirportUpdateManyWithoutCountryNestedInput
-    cities?: CityUpdateManyWithoutCountryNestedInput
-    states?: StateUpdateManyWithoutCountryNestedInput
-  }
-
-  export type CountryUncheckedUpdateWithoutCurrencyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    countryCode?: StringFieldUpdateOperationsInput | string
-    continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
-    airlines?: AirlineUncheckedUpdateManyWithoutCountryNestedInput
-    airports?: AirportUncheckedUpdateManyWithoutCountryNestedInput
-    cities?: CityUncheckedUpdateManyWithoutCountryNestedInput
-    states?: StateUncheckedUpdateManyWithoutCountryNestedInput
-  }
-
-  export type CountryUncheckedUpdateManyWithoutCurrencyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    countryCode?: StringFieldUpdateOperationsInput | string
-    continent?: EnumContinentFieldUpdateOperationsInput | $Enums.Continent
-    phoneCode?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AirlineCreateManyCountryInput = {

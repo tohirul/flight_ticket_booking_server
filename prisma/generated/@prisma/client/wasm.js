@@ -120,20 +120,11 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.CurrencyScalarFieldEnum = {
-  id: 'id',
-  code: 'code',
-  name: 'name',
-  symbol: 'symbol'
-};
-
 exports.Prisma.CountryScalarFieldEnum = {
   id: 'id',
   name: 'name',
   countryCode: 'countryCode',
-  continent: 'continent',
-  currencyCode: 'currencyCode',
-  phoneCode: 'phoneCode'
+  continent: 'continent'
 };
 
 exports.Prisma.StateScalarFieldEnum = {
@@ -243,24 +234,10 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.CurrencyOrderByRelevanceFieldEnum = {
-  id: 'id',
-  code: 'code',
-  name: 'name',
-  symbol: 'symbol'
-};
-
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 exports.Prisma.CountryOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
-  countryCode: 'countryCode',
-  currencyCode: 'currencyCode',
-  phoneCode: 'phoneCode'
+  countryCode: 'countryCode'
 };
 
 exports.Prisma.StateOrderByRelevanceFieldEnum = {
@@ -268,6 +245,11 @@ exports.Prisma.StateOrderByRelevanceFieldEnum = {
   name: 'name',
   stateCode: 'stateCode',
   countryId: 'countryId'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 exports.Prisma.CityOrderByRelevanceFieldEnum = {
@@ -380,7 +362,6 @@ exports.BookingStatus = exports.$Enums.BookingStatus = {
 };
 
 exports.Prisma.ModelName = {
-  Currency: 'Currency',
   Country: 'Country',
   State: 'State',
   City: 'City',
