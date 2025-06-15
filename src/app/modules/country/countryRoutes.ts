@@ -10,9 +10,9 @@ const controller = container.resolve(CountryController);
 const countryRouter = express.Router();
 
 countryRouter.get('/', controller.getAll);
-countryRouter.get('/:countryId', controller.getSingle);
+countryRouter.get('/:id', controller.getSingle);
 countryRouter.post('/', requestValidator(createCountrySchema), controller.create);
-countryRouter.put('/:countryId', requestValidator(updateCountrySchema), controller.update);
-countryRouter.delete('/:countryId', controller.destroy);
+countryRouter.put('/:id', requestValidator(updateCountrySchema), controller.update);
+countryRouter.delete('/:id', controller.destroy);
 
 export default countryRouter;

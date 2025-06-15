@@ -10,9 +10,9 @@ const controller = container.resolve(AirplaneController);
 const airPlaneRouter = express.Router();
 
 airPlaneRouter.get('/', controller.getAll);
-airPlaneRouter.get('/:airplaneId', controller.getSingle);
+airPlaneRouter.get('/:id', controller.getSingle);
 airPlaneRouter.post('/', requestValidator(createAirplaneSchema), controller.create);
-airPlaneRouter.put('/:airplaneId', controller.update);
-airPlaneRouter.delete('/:airplaneId', controller.destroy);
+airPlaneRouter.put('/:id', controller.update);
+airPlaneRouter.delete('/:id', controller.destroy);
 
 export default airPlaneRouter;
