@@ -1,16 +1,18 @@
 import express from 'express';
+import { container } from 'tsyringe';
 
 import requestValidator from '@/app/middlewares/requestValidator';
+import AirportController from '@/app/modules/airport/airportController';
 
-import * as airportController from './airportController';
 import { createAirportSchema, updateAirportSchema } from './airportZod';
 
+const { getAll, getSingle, create, update, destroy } = container.resolve(AirportController);
 const airportRouter = express.Router();
 
-airportRouter.get('/', airportController.getAll);
-airportRouter.get('/:id', airportController.getAirportDetails);
-airportRouter.post('/', requestValidator(createAirportSchema), airportController.create);
-airportRouter.put('/:id', requestValidator(updateAirportSchema), airportController.update);
-airportRouter.delete('/:id', airportController.destroy);
+airportRouter.get('/', getAll);
+airportRouter.get('/:id', getSingle);
+airportRouter.post('/', requestValidator(createAirportSchema), create);
+airportRouter.put('/:id', requestValidator(updateAirportSchema), update);
+airportRouter.delete('/:id', destroy);
 
 export default airportRouter;
