@@ -6,13 +6,13 @@ import requestValidator from '@middlewares/requestValidator';
 
 import { createAirlineSchema, updateAirlineSchema } from './airlineZod';
 
-const airlineController = container.resolve(AirlineController);
+const controller = container.resolve(AirlineController);
 const airlineRouter = express.Router();
 
-airlineRouter.get('/', airlineController.getAll);
-airlineRouter.get('/:airlineId', airlineController.getSingle);
-airlineRouter.post('/', requestValidator(createAirlineSchema), airlineController.create);
-airlineRouter.put('/:airlineId', requestValidator(updateAirlineSchema), airlineController.update);
-airlineRouter.delete('/:airlineId', airlineController.destroy);
+airlineRouter.get('/', controller.getAll);
+airlineRouter.get('/:airlineId', controller.getSingle);
+airlineRouter.post('/', requestValidator(createAirlineSchema), controller.create);
+airlineRouter.put('/:airlineId', requestValidator(updateAirlineSchema), controller.update);
+airlineRouter.delete('/:airlineId', controller.destroy);
 
 export default airlineRouter;

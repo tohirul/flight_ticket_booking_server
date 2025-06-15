@@ -6,13 +6,13 @@ import FlightController from '@/app/modules/flight/flightController';
 
 import { CreateFlightSchema, UpdateFlightSchema } from './flightZod';
 
-const { getAll, getSingle, create, update, destroy } = container.resolve(FlightController);
+const controller = container.resolve(FlightController);
 const flightRoutes = express.Router();
 
-flightRoutes.get('/', getAll);
-flightRoutes.get('/:id', getSingle);
-flightRoutes.post('/', requestValidator(CreateFlightSchema), create);
-flightRoutes.put('/:id', requestValidator(UpdateFlightSchema), update);
-flightRoutes.delete('/:id', destroy);
+flightRoutes.get('/', controller.getAll);
+flightRoutes.get('/:id', controller.getSingle);
+flightRoutes.post('/', requestValidator(CreateFlightSchema), controller.create);
+flightRoutes.put('/:id', requestValidator(UpdateFlightSchema), controller.update);
+flightRoutes.delete('/:id', controller.destroy);
 
 export default flightRoutes;

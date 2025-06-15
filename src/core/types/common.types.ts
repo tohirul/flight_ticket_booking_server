@@ -28,3 +28,10 @@ export type IAPIResponse<T> = {
   errors?: IGenericErrorMessage[];
   stack?: string;
 };
+export interface IService<T> {
+  getAll(query?: object): Promise<T[]>;
+  getSingle(id: string): Promise<T | null>;
+  create(data: T): Promise<T>;
+  update(id: string, data: Partial<T>): Promise<T>;
+  destroy(id: string): Promise<void>;
+}

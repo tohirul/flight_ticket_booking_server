@@ -1,4 +1,7 @@
+// core/shared/services.ts
 import { injectable } from 'tsyringe';
+
+import type { IService } from '@/core/types/common.types';
 
 interface Repository<T> {
   findAll(args?: any): Promise<T[]>;
@@ -10,7 +13,7 @@ interface Repository<T> {
 }
 
 @injectable()
-export default class Services<T> {
+export default class Services<T> implements IService<T> {
   constructor(protected repository: Repository<T>) {}
 
   protected async transactional<R>(callback: (txRepo: Repository<T>) => Promise<R>): Promise<R> {
@@ -20,8 +23,8 @@ export default class Services<T> {
     return callback(this.repository);
   }
 
-  async getAll(): Promise<T[]> {
-    return this.repository.findAll({});
+  async getAll(query: object = {}): Promise<T[]> {
+    return this.repository.findAll(query);
   }
 
   async getSingle(id: string): Promise<T | null> {

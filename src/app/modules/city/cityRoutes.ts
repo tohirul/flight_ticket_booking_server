@@ -6,13 +6,13 @@ import requestValidator from '@middlewares/requestValidator';
 
 import { createCitySchema, updateCitySchema } from './cityZod';
 
-const { getAll, getSingle, create, update, destroy } = container.resolve(CityController);
+const controller = container.resolve(CityController);
 const cityRouter = express.Router();
 
-cityRouter.get('/', getAll);
-cityRouter.get('/:id', getSingle);
-cityRouter.post('/', requestValidator(createCitySchema), create);
-cityRouter.put('/:id', requestValidator(updateCitySchema), update);
-cityRouter.delete('/:id', destroy);
+cityRouter.get('/', controller.getAll);
+cityRouter.get('/:id', controller.getSingle);
+cityRouter.post('/', requestValidator(createCitySchema), controller.create);
+cityRouter.put('/:id', requestValidator(updateCitySchema), controller.update);
+cityRouter.delete('/:id', controller.destroy);
 
 export default cityRouter;

@@ -1,25 +1,18 @@
+// core/shared/controller.ts
 import { Request, Response } from 'express';
 
-import catchAsync from '@core/utilities/catchAsync';
-import { createResponse } from '@core/utilities/createResponse';
-import HttpStatus from '@core/utilities/httpStatus';
-import sendResponse from '@core/utilities/sendResponse';
+import catchAsync from '@/core/utilities/catchAsync';
+import { createResponse } from '@/core/utilities/createResponse';
+import HttpStatus from '@/core/utilities/httpStatus';
+import sendResponse from '@/core/utilities/sendResponse';
+
+import type { IService } from '@/core/types/common.types';
 
 export default class Controller<T> {
-  private service: {
-    getAll: (...args: any[]) => Promise<T[]>;
-    getSingle: (id: string) => Promise<T | null>;
-    create: (data: any) => Promise<T>;
-    update: (id: string, data: Partial<T>) => Promise<T>;
-    destroy: (id: string) => Promise<T | void>;
-  };
+  constructor(private service: IService<T>) {}
 
-  constructor(service: any) {
-    this.service = service;
-  }
-
-  getAll = catchAsync(async (_req: Request, res: Response) => {
-    const result = await this.service.getAll();
+  getAll = catchAsync(async (req: Request, res: Response) => {
+    const result = await this.service.getAll(req.query);
     sendResponse(
       res,
       createResponse({

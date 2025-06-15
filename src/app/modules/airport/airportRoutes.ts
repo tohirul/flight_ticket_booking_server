@@ -6,13 +6,13 @@ import AirportController from '@/app/modules/airport/airportController';
 
 import { createAirportSchema, updateAirportSchema } from './airportZod';
 
-const { getAll, getSingle, create, update, destroy } = container.resolve(AirportController);
+const controller = container.resolve(AirportController);
 const airportRouter = express.Router();
 
-airportRouter.get('/', getAll);
-airportRouter.get('/:id', getSingle);
-airportRouter.post('/', requestValidator(createAirportSchema), create);
-airportRouter.put('/:id', requestValidator(updateAirportSchema), update);
-airportRouter.delete('/:id', destroy);
+airportRouter.get('/', controller.getAll);
+airportRouter.get('/:id', controller.getSingle);
+airportRouter.post('/', requestValidator(createAirportSchema), controller.create);
+airportRouter.put('/:id', requestValidator(updateAirportSchema), controller.update);
+airportRouter.delete('/:id', controller.destroy);
 
 export default airportRouter;
