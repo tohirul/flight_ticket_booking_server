@@ -14,6 +14,10 @@ export const createCountrySchema = z.object({
       /^[A-Z]{2,3}$/,
       'Country code must consist of 2 or 3 uppercase letters (e.g., "US", "FRA").'
     ),
+  continent: z.enum(
+    ['Africa', 'Antarctica', 'Asia', 'Europe', 'North_America', 'Oceania', 'South_America'],
+    { required_error: 'Country continent is required.' }
+  ),
 });
 
 export const updateCountrySchema = z.object({

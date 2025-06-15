@@ -13,6 +13,13 @@ interface Repository<T> {
 export default class Services<T> {
   constructor(protected repository: Repository<T>) {}
 
+  protected async transactional<R>(callback: (txRepo: Repository<T>) => Promise<R>): Promise<R> {
+    if (this.repository.runInTransaction) {
+      return this.repository.runInTransaction(callback);
+    }
+    return callback(this.repository);
+  }
+
   async getAll(): Promise<T[]> {
     return this.repository.findAll({});
   }
@@ -22,21 +29,14 @@ export default class Services<T> {
   }
 
   async create(data: T): Promise<T> {
-    return this.repository.create({ data });
+    return this.transactional((tx) => tx.create({ data }));
   }
 
   async update(id: string, data: Partial<T>): Promise<T> {
-    return this.repository.update({ where: { id }, data });
+    return this.transactional((tx) => tx.update({ where: { id }, data }));
   }
 
   async destroy(id: string): Promise<void> {
-    return this.repository.destroy({ where: { id } });
-  }
-
-  async transactional<R>(cb: (repo: Repository<T>) => Promise<R>): Promise<R> {
-    if (this.repository.runInTransaction) {
-      return this.repository.runInTransaction(cb);
-    }
-    return cb(this.repository); 
+    return this.transactional((tx) => tx.destroy({ where: { id } }));
   }
 }

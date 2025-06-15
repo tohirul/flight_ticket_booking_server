@@ -1,5 +1,4 @@
-import type { PrismaPromise } from "@generated/@prisma/client/runtime/library";
-
+import type { PrismaPromise } from '@generated/@prisma/client/runtime/library';
 
 export interface IRepository<T> {
   findAll(query?: object): Promise<T[]>;
@@ -18,12 +17,15 @@ class Repository<
     update: (args: Parameters<ModelDelegate['update']>[0]) => PrismaPromise<T>;
     delete: (args: Parameters<ModelDelegate['delete']>[0]) => PrismaPromise<T>;
   },
+  PrismaClientType extends { $transaction: <R>(fn: (txClient: any) => Promise<R>) => Promise<R> },
 > implements IRepository<T>
 {
-  private model: ModelDelegate;
+  protected model: ModelDelegate;
+  protected prismaClient: PrismaClientType;
 
-  constructor(model: ModelDelegate) {
+  constructor(model: ModelDelegate, prismaClient: PrismaClientType) {
     this.model = model;
+    this.prismaClient = prismaClient;
   }
 
   async findAll(query?: Parameters<ModelDelegate['findMany']>[0]): Promise<T[]> {
@@ -35,15 +37,33 @@ class Repository<
   }
 
   async create(query: Parameters<ModelDelegate['create']>[0]): Promise<T> {
-    return this.model.create(query);
+    return this.prismaClient.$transaction(async (txClient: any) => {
+      const txModel = txClient[this.modelName()] as ModelDelegate;
+      return txModel.create(query);
+    });
   }
 
   async update(query: Parameters<ModelDelegate['update']>[0]): Promise<T> {
-    return this.model.update(query);
+    return this.prismaClient.$transaction(async (txClient: any) => {
+      const txModel = txClient[this.modelName()] as ModelDelegate;
+      return txModel.update(query);
+    });
   }
 
   async destroy(query: Parameters<ModelDelegate['delete']>[0]): Promise<void> {
-    await this.model.delete(query);
+    await this.prismaClient.$transaction(async (txClient: any) => {
+      const txModel = txClient[this.modelName()] as ModelDelegate;
+      await txModel.delete(query);
+    });
+  }
+
+  protected modelName(): string {
+    for (const key in this.prismaClient) {
+      if (this.prismaClient[key] === this.model) {
+        return key;
+      }
+    }
+    throw new Error('Cannot determine model name from prisma client');
   }
 }
 

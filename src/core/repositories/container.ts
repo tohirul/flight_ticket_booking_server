@@ -31,7 +31,8 @@ const repositories = [
   {
     name: 'FlightRepository',
     repository: () => import('./container/repository_flight'),
-  }
+  },
+ 
 ];
 export async function registerRepositories() {
   const registrationPromises = repositories.map(({ name, repository }) =>

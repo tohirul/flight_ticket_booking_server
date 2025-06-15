@@ -1,14 +1,15 @@
 import { injectable } from 'tsyringe';
-import { Country, PrismaClient } from '@generated/@prisma/client';
-import Repository from '@core/repositories/repository';
+
 import PrismaService from '@/database';
+import Repository from '@core/repositories/repository';
+import { Country, PrismaClient } from '@generated/@prisma/client';
 
 const prisma = PrismaService.client;
 
 @injectable()
-class CountryRepository extends Repository<Country, PrismaClient['country']> {
+class CountryRepository extends Repository<Country, PrismaClient['country'], PrismaClient> {
   constructor() {
-    super(prisma.country);
+    super(prisma.country, prisma);
   }
 }
 
