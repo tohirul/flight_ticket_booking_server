@@ -5,6 +5,7 @@ import http from 'http';
 import process from 'process';
 
 import configuration from '@/config';
+import { loadCacheFromDisk, saveCacheToDisk } from '@/core/cache/persist';
 import logger from '@/core/logs';
 import PrismaService from '@/database';
 import { registerRepositories } from '@core/repositories/container';
@@ -16,6 +17,8 @@ let server: http.Server;
 
 const toggleServer = async (): Promise<void> => {
   try {
+    loadCacheFromDisk(); // ✅ Load cache at startup
+
     await registerRepositories();
 
     const { default: app } = await import('@/app');
@@ -24,6 +27,9 @@ const toggleServer = async (): Promise<void> => {
       logger.info(`✅ Server running on ${URI}:${PORT}`);
       await PrismaService.connect();
     });
+
+    // ✅ Save cache every 30 seconds
+    setInterval(saveCacheToDisk, 30 * 1000);
   } catch (error) {
     logger.error('❌ Server failed to start:', error);
     process.exit(1);
@@ -34,6 +40,8 @@ const handleServerShutdown = async (eventName: string, error?: Error): Promise<v
   logger.warn(`🛑 Shutdown signal received: ${eventName}`);
 
   try {
+    saveCacheToDisk(); // ✅ Save cache before exit
+
     if (server) {
       server.close(async () => {
         await PrismaService.disconnect();

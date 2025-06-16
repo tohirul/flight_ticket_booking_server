@@ -35,3 +35,7 @@ export interface IService<T> {
   update(id: string, data: Partial<T>): Promise<T>;
   destroy(id: string): Promise<void>;
 }
+
+export type CacheKey = `flights:${string}-${string}`;
+
+export type CacheData<T = any> = T;

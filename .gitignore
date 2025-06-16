@@ -3,6 +3,8 @@
 .vscode/
 .next/
 .vercel/
+.cache/
+
 tsconfig.tsbuildinfo
 # Node.js
 node_modules/
