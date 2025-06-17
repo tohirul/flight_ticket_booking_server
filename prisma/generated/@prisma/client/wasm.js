@@ -155,14 +155,23 @@ exports.Prisma.AirlineScalarFieldEnum = {
 
 exports.Prisma.AirplaneScalarFieldEnum = {
   id: 'id',
+  registrationCode: 'registrationCode',
   model: 'model',
+  manufacturer: 'manufacturer',
   year: 'year',
   seats: 'seats',
   capacity: 'capacity',
-  manufacturer: 'manufacturer',
+  type: 'type',
+  status: 'status',
+  rangeKm: 'rangeKm',
+  engineType: 'engineType',
+  speedKmph: 'speedKmph',
+  seatConfiguration: 'seatConfiguration',
+  isWideBody: 'isWideBody',
+  photoUrl: 'photoUrl',
+  airlineId: 'airlineId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  airlineId: 'airlineId'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.AirportScalarFieldEnum = {
@@ -170,16 +179,13 @@ exports.Prisma.AirportScalarFieldEnum = {
   name: 'name',
   IATAcode: 'IATAcode',
   cityId: 'cityId',
-  lat: 'lat',
-  lng: 'lng',
+  stateId: 'stateId',
+  countryId: 'countryId',
   address: 'address',
   timezone: 'timezone',
-  website: 'website',
   phoneNumber: 'phoneNumber',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  countryId: 'countryId',
-  stateId: 'stateId'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.FlightScalarFieldEnum = {
@@ -234,6 +240,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.CountryOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
@@ -267,10 +278,24 @@ exports.Prisma.AirlineOrderByRelevanceFieldEnum = {
   logo: 'logo'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 exports.Prisma.AirplaneOrderByRelevanceFieldEnum = {
   id: 'id',
+  registrationCode: 'registrationCode',
   model: 'model',
   manufacturer: 'manufacturer',
+  engineType: 'engineType',
+  photoUrl: 'photoUrl',
   airlineId: 'airlineId'
 };
 
@@ -279,12 +304,11 @@ exports.Prisma.AirportOrderByRelevanceFieldEnum = {
   name: 'name',
   IATAcode: 'IATAcode',
   cityId: 'cityId',
+  stateId: 'stateId',
+  countryId: 'countryId',
   address: 'address',
   timezone: 'timezone',
-  website: 'website',
-  phoneNumber: 'phoneNumber',
-  countryId: 'countryId',
-  stateId: 'stateId'
+  phoneNumber: 'phoneNumber'
 };
 
 exports.Prisma.FlightOrderByRelevanceFieldEnum = {
@@ -325,6 +349,19 @@ exports.Continent = exports.$Enums.Continent = {
   North_America: 'North_America',
   Oceania: 'Oceania',
   South_America: 'South_America'
+};
+
+exports.AirplaneType = exports.$Enums.AirplaneType = {
+  Passenger: 'Passenger',
+  Cargo: 'Cargo',
+  Mixed: 'Mixed'
+};
+
+exports.AirplaneStatus = exports.$Enums.AirplaneStatus = {
+  Active: 'Active',
+  InMaintenance: 'InMaintenance',
+  Retired: 'Retired',
+  Grounded: 'Grounded'
 };
 
 exports.FlightStatus = exports.$Enums.FlightStatus = {

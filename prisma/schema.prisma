@@ -52,6 +52,19 @@ enum Continent {
   South_America
 }
 
+enum AirplaneType {
+  Passenger
+  Cargo
+  Mixed
+}
+
+enum AirplaneStatus {
+  Active
+  InMaintenance
+  Retired
+  Grounded
+}
+
 model Country {
   id          String    @id @default(uuid())
   name        String
@@ -112,17 +125,28 @@ model Airline {
 }
 
 model Airplane {
-  id           String   @id @default(uuid())
-  model        String
-  year         Int
-  seats        Int
-  capacity     Int
-  manufacturer String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  airline      Airline  @relation(fields: [airlineId], references: [id], onDelete: Cascade)
-  airlineId    String
-  flights      Flight[]
+  id                String         @id @default(uuid())
+  registrationCode  String         @unique // Unique aircraft tail number
+  model             String
+  manufacturer      String
+  year              Int
+  seats             Int
+  capacity          Int // Could be in kg for cargo or total passenger capacity
+  type              AirplaneType   @default(Passenger)
+  status            AirplaneStatus @default(Active)
+  rangeKm           Int? // Optional: max flying range
+  engineType        String? // Optional: e.g., "Turbofan"
+  speedKmph         Int? // Optional: cruising speed
+  seatConfiguration Json? // Optional: per-class seat distribution
+  isWideBody        Boolean        @default(false) // Optional: gate/route logistics
+  photoUrl          String? // Optional: aircraft image
+
+  airline   Airline  @relation(fields: [airlineId], references: [id], onDelete: Cascade)
+  airlineId String
+  flights   Flight[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([airlineId])
 }
@@ -133,18 +157,15 @@ model Airport {
   IATAcode    String   @unique
   city        City     @relation(fields: [cityId], references: [id], onDelete: Cascade)
   cityId      String
-  lat         Float
-  lng         Float
+  state       State?   @relation(fields: [stateId], references: [id], onDelete: Cascade)
+  stateId     String?
+  country     Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  countryId   String
   address     String   @unique
   timezone    String
-  website     String?
   phoneNumber String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  country     Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
-  countryId   String
-  state       State    @relation(fields: [stateId], references: [id], onDelete: Cascade)
-  stateId     String
   departures  Flight[] @relation("Departure")
   arrivals    Flight[] @relation("Arrival")
 
